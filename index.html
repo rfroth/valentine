@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine?</title>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: #ffe6eb;
+      text-align: center;
+      margin: 0;
+    }
+
+    #container {
+      z-index: 1;
+    }
+
+    #question {
+      font-size: 2rem;
+      transition: font-size 0.3s ease;
+    }
+
+    button {
+      margin: 20px 10px 0;
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background: #444;
+      color: white;
+    }
+
+    /* Red screen overlay */
+    #redScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: red;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <div id="question">Will you be my Valentine? 💖</div>
+    <button id="yesBtn" onclick="handleYes()">Yes</button>
+    <button id="noBtn" onclick="handleNo()">No</button>
+  </div>
+
+  <div id="redScreen">WRONG ANSWER 😈</div>
+
+  <script>
+    let clickCount = 0;
+    const question = document.getElementById("question");
+    const redScreen = document.getElementById("redScreen");
+
+    function handleYes() {
+      clickCount++;
+
+      if (clickCount < 6) {
+        question.textContent = "Are you sure?? 😏";
+        question.style.fontSize = (2 + clickCount * 0.7) + "rem";
+      } else {
+        question.textContent = "YAY!!! 💘💘💘";
+        question.style.fontSize = "4rem";
+      }
+    }
+
+    function handleNo() {
+      redScreen.style.display = "flex";
+
+      setTimeout(() => {
+        redScreen.style.display = "none";
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
